@@ -19,6 +19,10 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 
+	/** Is the character attacking? */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	bool bIsAttacking;
+
 public:
 	// Sets default values for this character's properties
 	AMainCharacter();
@@ -40,4 +44,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	FORCEINLINE bool GetIsAttacking() { return bIsAttacking; }
+	FORCEINLINE void SetIsAttacking(bool Value) { bIsAttacking = Value; }
 };
