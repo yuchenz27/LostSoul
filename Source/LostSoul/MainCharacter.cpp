@@ -24,9 +24,10 @@ AMainCharacter::AMainCharacter()
 	FollowCamera->bUsePawnControlRotation = false; // since the spring arm already rotates
 
 	// Don't rotate when the controller rotates
-	bUseControllerRotationYaw = false;
+	// However, in combat, we want the mesh facing the enemy i.e. we want the mesh rotates with the controller
+	bUseControllerRotationYaw = true;
 	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
 }
 
 // Called when the game starts or when spawned
