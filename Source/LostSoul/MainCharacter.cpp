@@ -6,6 +6,9 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Controller.h"
 #include "Components/InputComponent.h"
+#include "Weapon.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/SkeletalMeshSocket.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -28,6 +31,8 @@ AMainCharacter::AMainCharacter()
 	bUseControllerRotationYaw = true;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
+
+	bIsAttacking = false;
 }
 
 // Called when the game starts or when spawned
@@ -84,4 +89,17 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput); // controller is a varianble in Pawn class
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 }
-
+/*
+void AMainCharacter::EquipWeapon()
+{
+	if (!Weapon) { return; }
+	// check if this mesh is static or skeletal
+	UStaticMeshComponent* StaticMesh = Weapon->GetStaticMeshComponent();
+	if (!StaticMesh)
+	{
+		const USkeletalMeshSocket* WeaponSocket = GetMesh()->GetSocketByName("RightHandWeapon");
+		if (!WeaponSocket) { return; }
+		WeaponSocket->AttachActor(Weapon, GetMesh());
+	}
+}
+*/

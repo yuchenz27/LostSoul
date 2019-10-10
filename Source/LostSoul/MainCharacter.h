@@ -18,8 +18,11 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	/** The follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
-
-	/** Is the character attacking? */
+	/*
+	// if I put this variable after bIsAttacking, the game would crash. Don't know why
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class AWeapon* Weapon;
+	*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	bool bIsAttacking;
 
@@ -43,7 +46,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	FORCEINLINE bool GetIsAttacking() { return bIsAttacking; }
-	FORCEINLINE void SetIsAttacking(bool Value) { bIsAttacking = Value; }
+	/*
+	UFUNCTION(BlueprintCallable)
+	void EquipWeapon();
+	*/
 };
