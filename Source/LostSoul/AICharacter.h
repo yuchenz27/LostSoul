@@ -6,17 +6,49 @@
 #include "GameFramework/Character.h"
 #include "AICharacter.generated.h"
 
+UENUM(BlueprintType)
+enum class EAIMovementStatus : uint8
+{
+	AMS_Idle          UMETA(DeplayName = "Idle"),
+	AMS_MoveToTarget  UMETA(DeplayName = "MoveToTarget"),
+	AMS_Attacking     UMETA(DeplayName = "Attacking"),
+
+	AMS_MAX           UMETA(DeplayName = "DefaultMax")
+};
+
 UCLASS()
 class LOSTSOUL_API AAICharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	float Health;
+	EAIMovementStatus MovementStatus;
 
-	/** Is the AI character currently being hit? */
+	// When character collides with this sphere, the AI will move to the character
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* ReachingSphere;
+
+	// When character collides with this sphere, the AI will attack the character
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	USphereComponent* AttackingSphere;
+
+	// When character does not collide with this sphere, the AI will stop chasing the character
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	USphereComponent* EscapingSphere;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	float Health;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	float Speed;
+
+	// Is the AI character currently being hit?
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	bool bIsHit;
+
+	// The accepted distance when AI moves to the character
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	float AttackingDistance;
 
 public:
 	// Sets default values for this character's properties
@@ -28,6 +60,12 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void GetHit(float Damage);
+
+	// Compute the current speed
+	UFUNCTION(BlueprintCallable)
+	void UpdateSpeed();
+
+	//void ReachingSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 public:	
 	// Called every frame

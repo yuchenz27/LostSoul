@@ -9,6 +9,7 @@
 #include "Weapon.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/SkeletalMeshSocket.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -40,6 +41,8 @@ void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Log out the default max walk speed
+	//UE_LOG(LogTemp, Warning, TEXT("Max walk speed: %f"), GetCharacterMovement()->MaxWalkSpeed);
 }
 
 void AMainCharacter::MoveForward(float Value)

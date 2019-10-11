@@ -18,14 +18,14 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	/** The follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
-	/*
+
 	// if I put this variable after bIsAttacking, the game would crash. Don't know why
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class AWeapon* Weapon;
-	*/
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	bool bIsAttacking;
-
+	
 public:
 	// Sets default values for this character's properties
 	AMainCharacter();
