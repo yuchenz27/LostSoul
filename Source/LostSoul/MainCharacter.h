@@ -23,9 +23,6 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class AWeapon* Weapon;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	bool bIsAttacking;
-	
 public:
 	// Sets default values for this character's properties
 	AMainCharacter();

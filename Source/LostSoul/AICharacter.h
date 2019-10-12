@@ -24,18 +24,6 @@ class LOSTSOUL_API AAICharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	EAIMovementStatus MovementStatus;
 
-	// When character collides with this sphere, the AI will move to the character
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	class USphereComponent* ReachingSphere;
-
-	// When character collides with this sphere, the AI will attack the character
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* AttackingSphere;
-
-	// When character does not collide with this sphere, the AI will stop chasing the character
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	USphereComponent* EscapingSphere;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Health;
 	

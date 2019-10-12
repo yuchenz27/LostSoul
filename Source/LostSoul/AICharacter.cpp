@@ -13,18 +13,6 @@ AAICharacter::AAICharacter()
 
 	MovementStatus = EAIMovementStatus::AMS_Idle;
 	
-	ReachingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("ReachingSphere"));
-	ReachingSphere->SetupAttachment(RootComponent);
-	ReachingSphere->InitSphereRadius(1000.f);
-
-	AttackingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("AttackingSphere"));
-	AttackingSphere->SetupAttachment(RootComponent);
-	AttackingSphere->InitSphereRadius(125.f);
-
-	EscapingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("EscapingSphere"));
-	EscapingSphere->SetupAttachment(RootComponent);
-	EscapingSphere->InitSphereRadius(1600.f);
-	
 	Health = 100.f;
 	Speed = 0.f;
 	bIsHit = false;
