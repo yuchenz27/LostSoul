@@ -10,6 +10,9 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/SkeletalMeshSocket.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/StaticMeshComponent.h"
+
+
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -27,14 +30,19 @@ AMainCharacter::AMainCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false; // since the spring arm already rotates
 
+	// Set up the sword
+	Sword = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword"));
+	GetMesh()->GetSocketByName("hand_r");
+	Sword->SetupAttachment(GetMesh(), "hand_r");
+
 	// Don't rotate when the controller rotates
 	// However, in combat, we want the mesh facing the enemy i.e. we want the mesh rotates with the controller
-	bUseControllerRotationYaw = true;
+	bUseControllerRotationYaw = false;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 
-	//GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	//GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
 }
 
 // Called when the game starts or when spawned

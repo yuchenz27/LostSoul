@@ -6,6 +6,16 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+UENUM(BlueprintType)
+enum class EMovementStatus : uint8
+{
+	MS_Walk          UMETA(DeplayName = "Walk"),
+	MS_Run           UMETA(DeplayName = "Run"),
+	MS_Sprint        UMETA(DeplayName = "Sprint"),
+
+	MS_MAX           UMETA(DeplayName = "DefaultMax")
+};
+
 UCLASS()
 class LOSTSOUL_API AMainCharacter : public ACharacter
 {
@@ -18,6 +28,10 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	/** The follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	// The sword, which is now attached to the skeletal mesh component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UStaticMeshComponent* Sword;
 
 	// if I put this variable after bIsAttacking, the game would crash. Don't know why
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
