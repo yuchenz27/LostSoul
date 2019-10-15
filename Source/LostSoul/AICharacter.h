@@ -25,6 +25,12 @@ class LOSTSOUL_API AAICharacter : public ACharacter
 	EAIMovementStatus MovementStatus;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* Weapon;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	class AMainCharacter* Target;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Health;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
@@ -33,10 +39,6 @@ class LOSTSOUL_API AAICharacter : public ACharacter
 	// Is the AI character currently being hit?
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	bool bIsHit;
-
-	// The accepted distance when AI moves to the character
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	float AttackingDistance;
 
 public:
 	// Sets default values for this character's properties

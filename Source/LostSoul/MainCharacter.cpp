@@ -32,7 +32,6 @@ AMainCharacter::AMainCharacter()
 
 	// Set up the sword
 	Sword = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword"));
-	GetMesh()->GetSocketByName("hand_r");
 	Sword->SetupAttachment(GetMesh(), "hand_r");
 	// set collision stuff
 	Sword->SetCollisionEnabled(ECollisionEnabled::QueryOnly);

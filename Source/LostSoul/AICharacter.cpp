@@ -4,6 +4,7 @@
 #include "AICharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 AAICharacter::AAICharacter()
@@ -12,6 +13,14 @@ AAICharacter::AAICharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MovementStatus = EAIMovementStatus::AMS_Idle;
+
+	Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon"));
+	Weapon->SetupAttachment(GetMesh(), "hand_r_weapon");
+	// set collision stuff
+	Weapon->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	Weapon->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	Weapon->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	Weapon->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 	
 	Health = 100.f;
 	Speed = 0.f;
@@ -24,9 +33,8 @@ void AAICharacter::BeginPlay()
 	Super::BeginPlay();
 	
 	// initialize max walk speed
-	GetCharacterMovement()->MaxWalkSpeed = 250.f;
+	GetCharacterMovement()->MaxWalkSpeed = 300.f;
 
-	AttackingDistance = 80.f;
 }
 
 void AAICharacter::GetHit(float Damage)
