@@ -30,7 +30,7 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	class UCameraComponent* FollowCamera;
 
 	// The sword, which is now attached to the skeletal mesh component
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* Sword;
 
 	// if I put this variable after bIsAttacking, the game would crash. Don't know why

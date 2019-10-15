@@ -34,6 +34,11 @@ AMainCharacter::AMainCharacter()
 	Sword = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword"));
 	GetMesh()->GetSocketByName("hand_r");
 	Sword->SetupAttachment(GetMesh(), "hand_r");
+	// set collision stuff
+	Sword->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	Sword->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	Sword->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	Sword->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 
 	// Don't rotate when the controller rotates
 	// However, in combat, we want the mesh facing the enemy i.e. we want the mesh rotates with the controller
