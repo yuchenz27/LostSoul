@@ -12,7 +12,7 @@ AAICharacter::AAICharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	MovementStatus = EAIMovementStatus::AMS_Idle;
+	AIMovementStatus = EAIMovementStatus::AMS_NotMoving;
 
 	Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon"));
 	Weapon->SetupAttachment(GetMesh(), "hand_r_weapon");
@@ -23,8 +23,6 @@ AAICharacter::AAICharacter()
 	Weapon->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 	
 	Health = 100.f;
-	Speed = 0.f;
-	bIsHit = false;
 }
 
 // Called when the game starts or when spawned
@@ -39,23 +37,21 @@ void AAICharacter::BeginPlay()
 
 void AAICharacter::GetHit(float Damage)
 {
-	bIsHit = true;
 	Health -= Damage;
 }
-
+/*
 void AAICharacter::UpdateSpeed()
 {
 	FVector CurrentSpeed = GetVelocity();
 	FVector LateralSpeed = FVector(CurrentSpeed.X, CurrentSpeed.Y, 0.f);
 	Speed = LateralSpeed.Size();
 }
-
+*/
 // Called every frame
 void AAICharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	UpdateSpeed();
 }
 
 // Called to bind functionality to input

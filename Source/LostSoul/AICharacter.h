@@ -9,11 +9,13 @@
 UENUM(BlueprintType)
 enum class EAIMovementStatus : uint8
 {
-	AMS_Idle          UMETA(DeplayName = "Idle"),
-	AMS_MoveToTarget  UMETA(DeplayName = "MoveToTarget"),
-	AMS_Attacking     UMETA(DeplayName = "Attacking"),
+	AMS_NotMoving,
+	AMS_MovingForward,
+	AMS_MovingLeft,
+	AMS_MovingRight,
+	AMS_MovingBackward,
 
-	AMS_MAX           UMETA(DeplayName = "DefaultMax")
+	AMS_MAX
 };
 
 UCLASS()
@@ -22,23 +24,16 @@ class LOSTSOUL_API AAICharacter : public ACharacter
 	GENERATED_BODY()
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	EAIMovementStatus MovementStatus;
+	EAIMovementStatus AIMovementStatus;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* Weapon;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class AMainCharacter* Target;
+	class AMainCharacter* CombatTarget;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Health;
-	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	float Speed;
-
-	// Is the AI character currently being hit?
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	bool bIsHit;
 
 public:
 	// Sets default values for this character's properties
@@ -50,11 +45,11 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void GetHit(float Damage);
-
+	/*
 	// Compute the current speed
 	UFUNCTION(BlueprintCallable)
 	void UpdateSpeed();
-
+	*/
 	//void ReachingSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 public:	
