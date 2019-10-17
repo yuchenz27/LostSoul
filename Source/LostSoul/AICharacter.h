@@ -43,15 +43,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintCallable)
-	void GetHit(float Damage);
-	/*
-	// Compute the current speed
-	UFUNCTION(BlueprintCallable)
-	void UpdateSpeed();
-	*/
-	//void ReachingSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -61,5 +52,9 @@ public:
 
 	FORCEINLINE float GetHealth() { return Health; }
 	FORCEINLINE void SetHealth(float Value) { Health = Value; }
+
+	// Compute the yaw we need to face to the target actor
+	UFUNCTION(BlueprintCallable)
+	FRotator ComputeLookAtRotationYaw(AActor* TargetActor);
 
 };

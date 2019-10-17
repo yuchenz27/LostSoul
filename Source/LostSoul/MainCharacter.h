@@ -36,6 +36,10 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	// if I put this variable after bIsAttacking, the game would crash. Don't know why
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	class AWeapon* Weapon;
+
+	// the combat target
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	class AAICharacter* CombatTarget;
 	
 public:
 	// Sets default values for this character's properties

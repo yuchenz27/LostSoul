@@ -5,6 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AAICharacter::AAICharacter()
@@ -35,18 +36,6 @@ void AAICharacter::BeginPlay()
 
 }
 
-void AAICharacter::GetHit(float Damage)
-{
-	Health -= Damage;
-}
-/*
-void AAICharacter::UpdateSpeed()
-{
-	FVector CurrentSpeed = GetVelocity();
-	FVector LateralSpeed = FVector(CurrentSpeed.X, CurrentSpeed.Y, 0.f);
-	Speed = LateralSpeed.Size();
-}
-*/
 // Called every frame
 void AAICharacter::Tick(float DeltaTime)
 {
@@ -59,5 +48,13 @@ void AAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+FRotator AAICharacter::ComputeLookAtRotationYaw(AActor* TargetActor)
+{
+	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), TargetActor->GetActorLocation());
+	FRotator LookAtRotationYaw(0.f, LookAtRotation.Yaw, 0.f);
+
+	return LookAtRotationYaw;
 }
 
