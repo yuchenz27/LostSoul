@@ -23,7 +23,10 @@ AAICharacter::AAICharacter()
 	Weapon->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	Weapon->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
 	
+	MaxHealth = 100.f;
 	Health = 100.f;
+	MaxStamina = 100.f;
+	Stamina = 100.f;
 }
 
 // Called when the game starts or when spawned
