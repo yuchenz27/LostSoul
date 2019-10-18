@@ -50,11 +50,10 @@ class LOSTSOUL_API AMainCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float Stamina;
 
-	/*
-	// the combat target
+	// attack damage
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	class AAICharacter* CombatTarget;
-	*/
+	float BasicAttackDamage;
+
 public:
 	// Sets default values for this character's properties
 	AMainCharacter();
