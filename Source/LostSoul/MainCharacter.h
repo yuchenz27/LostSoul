@@ -9,11 +9,13 @@
 UENUM(BlueprintType)
 enum class EMovementStatus : uint8
 {
-	MS_Walk          UMETA(DeplayName = "Walk"),
-	MS_Run           UMETA(DeplayName = "Run"),
-	MS_Sprint        UMETA(DeplayName = "Sprint"),
+	MS_Walk,
+	MS_Run,
+	MS_Sprint,
+	MS_Combat,
+	MS_CombatSprint,
 
-	MS_MAX           UMETA(DeplayName = "DefaultMax")
+	MS_MAX
 };
 
 UCLASS()

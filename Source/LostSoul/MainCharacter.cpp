@@ -115,17 +115,3 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput); // controller is a varianble in Pawn class
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 }
-/*
-void AMainCharacter::EquipWeapon()
-{
-	if (!Weapon) { return; }
-	// check if this mesh is static or skeletal
-	UStaticMeshComponent* StaticMesh = Weapon->GetStaticMeshComponent();
-	if (!StaticMesh)
-	{
-		const USkeletalMeshSocket* WeaponSocket = GetMesh()->GetSocketByName("RightHandWeapon");
-		if (!WeaponSocket) { return; }
-		WeaponSocket->AttachActor(Weapon, GetMesh());
-	}
-}
-*/
